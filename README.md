@@ -1,6 +1,6 @@
-# Sistema Pocket — Briefing de Estilo
+# Casa Possível — Briefing de Estilo
 
-Primeiro módulo do Sistema Pocket para a Nina Interiores: uma pessoa responde
+Primeiro módulo do Casa Possível para a Nina Interiores: uma pessoa responde
 um briefing rápido (tamanho do apê, cômodos a decorar, e um quiz de estilo) e
 recebe uma imagem de referência de como um ambiente no estilo identificado
 pode ficar. O objetivo é gerar desejo e captar um lead qualificado (estilo +

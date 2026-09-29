@@ -23,7 +23,7 @@ export default async function AdminLoginPage({
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-6 py-24">
-      <p className="label-caps text-olive mb-4">Sistema Pocket</p>
+      <p className="label-caps text-olive mb-4">Casa Possível</p>
       <h1 className="font-serif-display text-3xl text-charcoal mb-8">
         Acesso administrativo
       </h1>

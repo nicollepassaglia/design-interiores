@@ -19,7 +19,7 @@ export default async function PainelLayout({
     <div className="flex flex-1 flex-col">
       <header className="flex items-center justify-between border-b border-line px-6 py-5 sm:px-10">
         <div>
-          <p className="label-caps text-olive">Sistema Pocket</p>
+          <p className="label-caps text-olive">Casa Possível</p>
           <p className="font-serif-display text-lg text-charcoal">Admin</p>
         </div>
         <nav className="flex items-center gap-6">

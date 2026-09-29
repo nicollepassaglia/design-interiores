@@ -15,7 +15,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Sistema Pocket — Encontre seu estilo",
+  title: "Casa Possível — Encontre seu estilo",
   description:
     "Responda o quiz e descubra como seu apartamento pode ficar decorado.",
 };
