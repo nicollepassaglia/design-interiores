@@ -1,13 +1,13 @@
-import { criarEmpreendimento } from "@/lib/admin-actions";
-import { EmpreendimentoForm } from "@/components/admin/EmpreendimentoForm";
+import { criarParceiro } from "@/lib/admin-actions";
+import { ParceiroForm } from "@/components/admin/ParceiroForm";
 
-export default function NovoEmpreendimentoPage() {
+export default function NovoParceiroPage() {
   return (
     <div className="mx-auto w-full max-w-2xl">
       <h1 className="font-serif-display text-3xl text-charcoal mb-8">
-        Novo empreendimento
+        Novo parceiro
       </h1>
-      <EmpreendimentoForm action={criarEmpreendimento} modo="criar" />
+      <ParceiroForm action={criarParceiro} modo="criar" />
     </div>
   );
 }

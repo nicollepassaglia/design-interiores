@@ -1,38 +1,42 @@
+// Estilos baseados no Guia de Decoração ArqExpress. Para adicionar um novo
+// estilo (ex: Retrô, Minimalista, Moderno), basta acrescentar um item aqui —
+// nenhuma migração de banco é necessária, o catálogo de renders (RenderEstilo)
+// é livre por string de estilo.
 export const ESTILOS = [
-  "quente_organico",
-  "boho_tropical",
-  "rustico_aconchegante",
-  "contemporaneo_vibrante",
+  {
+    id: "classico",
+    nome: "Clássico",
+    descricao:
+      "Linhas elegantes e sofisticadas, móveis robustos, mármore e dourado, lustres de cristal.",
+  },
+  {
+    id: "industrial",
+    nome: "Industrial",
+    descricao:
+      "Estrutura aparente, tijolo, cimento queimado e concreto — clima de loft urbano.",
+  },
+  {
+    id: "rustico",
+    nome: "Rústico",
+    descricao:
+      "Madeira de demolição, artesanal, plantas e lustres de palha — remete à natureza.",
+  },
+  {
+    id: "romantico",
+    nome: "Romântico",
+    descricao:
+      "Peças arredondadas, tons pastel, estampas florais — o máximo de aconchego.",
+  },
+  {
+    id: "contemporaneo",
+    nome: "Contemporâneo",
+    descricao:
+      "O estilo mais atual: madeira, laca, vidro e ferro combinados no mesmo ambiente.",
+  },
 ] as const;
 
-export type Estilo = (typeof ESTILOS)[number];
+export type EstiloId = (typeof ESTILOS)[number]["id"];
 
-export const ESTILO_INFO: Record<Estilo, { nome: string; descricao: string; referencia: string }> = {
-  quente_organico: {
-    nome: "Quente Orgânico",
-    descricao: "Terracota, tons terrosos, muxarabi, plantas, madeira natural.",
-    referencia: "México dos anos 1940",
-  },
-  boho_tropical: {
-    nome: "Boho Tropical",
-    descricao: "Rattan, vime, tecidos estampados, mistura cultural, clima despojado e alegre.",
-    referencia: "Praia colorida no Nordeste",
-  },
-  rustico_aconchegante: {
-    nome: "Rústico Aconchegante",
-    descricao: "Madeira crua, linho, tons neutros quentes, texturas naturais.",
-    referencia: "Casa de vó atualizada",
-  },
-  contemporaneo_vibrante: {
-    nome: "Contemporâneo Vibrante",
-    descricao: "Formas orgânicas atuais, uma cor de destaque forte, linhas mais limpas.",
-    referencia: "Apartamento novo numa capital",
-  },
-};
-
-export const CAMPO_IMAGEM_POR_ESTILO: Record<Estilo, "imagemQuenteOrganico" | "imagemBohoTropical" | "imagemRusticoAconchegante" | "imagemContemporaneoVibrante"> = {
-  quente_organico: "imagemQuenteOrganico",
-  boho_tropical: "imagemBohoTropical",
-  rustico_aconchegante: "imagemRusticoAconchegante",
-  contemporaneo_vibrante: "imagemContemporaneoVibrante",
-};
+export function nomeDoEstilo(id: string): string {
+  return ESTILOS.find((e) => e.id === id)?.nome ?? id;
+}

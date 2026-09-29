@@ -1,25 +1,25 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { atualizarEmpreendimento } from "@/lib/admin-actions";
-import { EmpreendimentoForm } from "@/components/admin/EmpreendimentoForm";
+import { atualizarParceiro } from "@/lib/admin-actions";
+import { ParceiroForm } from "@/components/admin/ParceiroForm";
 
-export default async function EditarEmpreendimentoPage({
+export default async function EditarParceiroPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const empreendimento = await prisma.empreendimento.findUnique({ where: { id } });
-  if (!empreendimento) notFound();
+  const parceiro = await prisma.parceiro.findUnique({ where: { id } });
+  if (!parceiro) notFound();
 
-  const acao = atualizarEmpreendimento.bind(null, id);
+  const acao = atualizarParceiro.bind(null, id);
 
   return (
     <div className="mx-auto w-full max-w-2xl">
       <h1 className="font-serif-display text-3xl text-charcoal mb-8">
-        Editar {empreendimento.nomeEmpreendimento}
+        Editar {parceiro.nome}
       </h1>
-      <EmpreendimentoForm action={acao} valoresIniciais={empreendimento} modo="editar" />
+      <ParceiroForm action={acao} valoresIniciais={parceiro} modo="editar" />
     </div>
   );
 }

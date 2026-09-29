@@ -1,20 +1,20 @@
-import { ESTILOS, type Estilo } from "./estilos";
+import { ESTILOS, type EstiloId } from "./estilos";
 import { PERGUNTAS } from "./perguntas";
 
-export type Respostas = Record<number, Estilo>;
+export type Respostas = Record<number, EstiloId>;
 
-export function calcularResultado(respostas: Respostas): Estilo {
-  const pontos: Record<Estilo, number> = Object.fromEntries(
-    ESTILOS.map((e) => [e, 0])
-  ) as Record<Estilo, number>;
+export function calcularResultado(respostas: Respostas): EstiloId {
+  const pontos = Object.fromEntries(
+    ESTILOS.map((e) => [e.id, 0])
+  ) as Record<EstiloId, number>;
 
   for (const pergunta of PERGUNTAS) {
     const escolha = respostas[pergunta.id];
     if (escolha) pontos[escolha] += pergunta.pontos;
   }
 
-  const maiorPontuacao = Math.max(...ESTILOS.map((e) => pontos[e]));
-  const empatados = ESTILOS.filter((e) => pontos[e] === maiorPontuacao);
+  const maiorPontuacao = Math.max(...ESTILOS.map((e) => pontos[e.id]));
+  const empatados = ESTILOS.map((e) => e.id).filter((id) => pontos[id] === maiorPontuacao);
 
   if (empatados.length === 1) return empatados[0];
 

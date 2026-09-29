@@ -7,16 +7,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Empreendimento {
-  id                          String   @id @default(cuid())
-  idPlanta                    String   @unique
-  nomeEmpreendimento          String
-  imagemQuenteOrganico        String
-  imagemBohoTropical          String
-  imagemRusticoAconchegante   String
-  imagemContemporaneoVibrante String
-  imagemPlantaCrua            String?
-  whatsapp                    String?
-  criadoEm                    DateTime @default(now())
-  atualizadoEm                DateTime @updatedAt
+// Parceiro B2B (construtora, imobiliária, corretor) que compartilha o link
+// do quiz. Serve apenas para atribuição de lead — não guarda imagens.
+model Parceiro {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  nome      String
+  whatsapp  String?
+  criadoEm  DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+}
+
+// Catálogo central de renders: uma imagem por combinação de estilo x tamanho
+// de apartamento. Não é por empreendimento — é reaproveitado por todos os
+// parceiros. Cobertura pode ser parcial (ver fallback em src/lib/renders.ts).
+model RenderEstilo {
+  id        String   @id @default(cuid())
+  estilo    String
+  tamanho   String
+  imagemUrl String
+  criadoEm  DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  @@unique([estilo, tamanho])
 }

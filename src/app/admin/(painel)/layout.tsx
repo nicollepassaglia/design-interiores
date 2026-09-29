@@ -24,10 +24,13 @@ export default async function PainelLayout({
         </div>
         <nav className="flex items-center gap-6">
           <Link href="/admin" className="label-caps text-charcoal/60 hover:text-charcoal">
-            Empreendimentos
+            Parceiros
           </Link>
           <Link href="/admin/novo" className="label-caps text-charcoal/60 hover:text-charcoal">
-            Novo
+            Novo parceiro
+          </Link>
+          <Link href="/admin/renders" className="label-caps text-charcoal/60 hover:text-charcoal">
+            Renders
           </Link>
           <form action={sair}>
             <button className="label-caps text-charcoal/60 hover:text-terracotta cursor-pointer">

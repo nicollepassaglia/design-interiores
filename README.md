@@ -1,9 +1,16 @@
-# Sistema Pocket — Quiz de Estilo
+# Sistema Pocket — Briefing de Estilo
 
-Primeiro módulo do Sistema Pocket para a Nina Interiores: um morador responde
-um quiz de 7 perguntas e recebe uma imagem renderizada de como o apartamento
-dele (a planta específica do empreendimento) pode ficar decorado no estilo
-identificado.
+Primeiro módulo do Sistema Pocket para a Nina Interiores: uma pessoa responde
+um briefing rápido (tamanho do apê, cômodos a decorar, e um quiz de estilo) e
+recebe uma imagem de referência de como um ambiente no estilo identificado
+pode ficar. O objetivo é gerar desejo e captar um lead qualificado (estilo +
+metragem + cômodos já registrados) para a consultoria completa.
+
+Os estilos são baseados no **Guia de Decoração ArqExpress**. As imagens não
+são da planta específica de quem responde — são renders de referência por
+**estilo × tamanho de apartamento** (pequeno até 70m², médio 70–110m², grande
+acima de 110m²), cadastrados uma vez no admin e reaproveitados por todos os
+parceiros.
 
 ## Stack
 
@@ -18,32 +25,40 @@ identificado.
 npm install
 cp .env.example .env   # ajuste ADMIN_PASSWORD e ADMIN_SESSION_SECRET
 npx prisma migrate dev
-npm run db:seed        # cria um empreendimento de exemplo com imagens placeholder
 npm run dev
 ```
 
-- Quiz de exemplo: `http://localhost:3000/edificio-aurora-2q`
+- Briefing de exemplo: `http://localhost:3000/teste`
 - Admin: `http://localhost:3000/admin` (senha em `ADMIN_PASSWORD`)
 
 ## Estrutura
 
-- `src/lib/perguntas.ts` — as 7 perguntas e alternativas do quiz
+- `src/lib/estilos.ts` — os estilos ativos (hoje: Clássico, Industrial,
+  Rústico, Romântico, Contemporâneo). Adicionar um novo estilo é só
+  acrescentar um item aqui — sem migração de banco.
+- `src/lib/tamanhos.ts` — as 3 faixas de tamanho e a lista de cômodos
+- `src/lib/perguntas.ts` — as perguntas de briefing de estilo (pontuadas)
 - `src/lib/pontuacao.ts` — regra de pontuação e desempate
-- `src/lib/estilos.ts` — os 4 estilos e mapeamento para os campos de imagem
-- `src/components/quiz/QuizFlow.tsx` — fluxo completo (landing → quiz → resultado)
-- `src/app/[idPlanta]/page.tsx` — página pública do quiz por empreendimento
-- `src/app/admin/` — cadastro de empreendimentos (protegido por senha)
+- `src/lib/renders.ts` — busca o render de (estilo, tamanho) com fallback
+  para qualquer tamanho daquele estilo, caso o catálogo ainda esteja
+  incompleto
+- `src/components/quiz/QuizFlow.tsx` — fluxo completo: landing → tamanho →
+  quantidade de cômodos → quais cômodos → quiz de estilo → resultado
+- `src/app/[parceiro]/page.tsx` — página pública do briefing por parceiro
+- `src/app/admin/` — cadastro de parceiros (link + WhatsApp) e do catálogo
+  de renders (protegido por senha)
 
-## Cadastrando um empreendimento real
+## Cadastrando no admin
 
-No admin, cada empreendimento precisa de:
+**Parceiros** (`/admin`): cada construtora/imobiliária/corretor tem um slug
+próprio (vira a URL `/slug-do-parceiro` compartilhada com o lead) e um
+WhatsApp — usado só para atribuição do lead e o botão de contato, não afeta
+as imagens mostradas.
 
-- Um `ID da planta` único (vira a URL do quiz compartilhada com o morador)
-- Nome do empreendimento
-- WhatsApp para o botão de contato do resultado (opcional)
-- As 4 imagens renderizadas (uma por estilo) — feitas pela equipe em
-  SketchUp + Magnific, não geradas pelo sistema
-- Imagem da planta crua (opcional, para o futuro módulo de vídeo)
+**Catálogo de renders** (`/admin/renders`): uma imagem por combinação de
+estilo × tamanho (hoje, 5 estilos × 3 tamanhos = 15 combinações possíveis).
+Não precisa preencher tudo de uma vez — combinações vazias usam
+automaticamente outro tamanho já cadastrado daquele estilo.
 
 ## Deploy em produção
 
@@ -64,3 +79,5 @@ Recomendado: [Vercel](https://vercel.com).
 - Módulo de vídeo "antes e depois"
 - Geração de imagem por IA em tempo real — imagens são pré-renderizadas e
   cadastradas manualmente no admin
+- Renders específicos por planta/empreendimento (descartado — ver
+  `docs/spec.md` para o desenho original e o motivo da mudança)
