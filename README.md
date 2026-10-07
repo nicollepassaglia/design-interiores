@@ -16,15 +16,15 @@ parceiros.
 ## Stack
 
 - **Next.js 16** (App Router, TypeScript, Tailwind CSS v4)
-- **Prisma 6** + **SQLite** (arquivo local `prisma/dev.db`) — fácil de trocar
-  para Postgres em produção
-- Upload de imagens local (`public/uploads`) via Server Actions
+- **Prisma 6** + **Postgres** (Neon, via Vercel)
+- Upload de imagens no **Vercel Blob** em produção (sem token, cai para
+  `public/uploads` no dev local), via Server Actions
 
 ## Rodando localmente
 
 ```bash
 npm install
-cp .env.example .env   # ajuste ADMIN_PASSWORD e ADMIN_SESSION_SECRET
+cp .env.example .env   # preencha DATABASE_URL(_UNPOOLED) com um Postgres (ex: Neon) e as senhas
 npx prisma migrate dev
 npm run dev
 ```
@@ -65,14 +65,14 @@ automaticamente outro tamanho já cadastrado daquele estilo.
 
 Recomendado: [Vercel](https://vercel.com).
 
-1. Trocar o banco para Postgres (ex: Vercel Postgres ou Neon): atualizar
-   `datasource db { provider = "postgresql" }` em `prisma/schema.prisma` e
-   rodar `npx prisma migrate deploy`.
-2. Trocar o armazenamento de imagens de `public/uploads` (disco local, não
-   persiste em serverless) para um serviço como Vercel Blob ou S3 — ajustar
-   `src/lib/upload.ts`.
-3. Configurar as variáveis de ambiente (`DATABASE_URL`, `ADMIN_PASSWORD`,
-   `ADMIN_SESSION_SECRET`) no painel da Vercel.
+1. Importar o repositório na Vercel (New Project).
+2. Na aba Storage do projeto, criar um **Neon Postgres** (preenche
+   `DATABASE_URL` e `DATABASE_URL_UNPOOLED` sozinho) e um **Blob Store**
+   (preenche `BLOB_READ_WRITE_TOKEN`).
+3. Em Settings > Environment Variables, adicionar `ADMIN_PASSWORD` e
+   `ADMIN_SESSION_SECRET`.
+4. Deploy. O build já roda `prisma migrate deploy` e cria as tabelas.
+5. Entrar em `/admin`, cadastrar o primeiro parceiro e subir os renders.
 
 ## Fora de escopo (por enquanto)
 
