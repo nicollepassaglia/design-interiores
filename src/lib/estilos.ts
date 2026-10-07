@@ -1,37 +1,31 @@
-// Estilos baseados no Guia de Decoração ArqExpress. Para adicionar um novo
-// estilo (ex: Retrô, Minimalista, Moderno), basta acrescentar um item aqui —
+// Os 4 estilos oficiais da Casa Possível. Para adicionar um novo estilo,
+// acrescente um item aqui e uma alternativa em cada pergunta de perguntas.ts —
 // nenhuma migração de banco é necessária, o catálogo de renders (RenderEstilo)
 // é livre por string de estilo.
 export const ESTILOS = [
   {
-    id: "classico",
-    nome: "Clássico",
+    id: "brasileira",
+    nome: "Brasileira",
     descricao:
-      "Linhas elegantes e sofisticadas, móveis robustos, mármore e dourado, lustres de cristal.",
+      "Caramelo, mostarda, terracota e verde-folha, com palhinha, cerâmica artesanal e plantas.",
   },
   {
-    id: "industrial",
-    nome: "Industrial",
+    id: "natural",
+    nome: "Natural",
     descricao:
-      "Estrutura aparente, tijolo, cimento queimado e concreto — clima de loft urbano.",
-  },
-  {
-    id: "rustico",
-    nome: "Rústico",
-    descricao:
-      "Madeira de demolição, artesanal, plantas e lustres de palha — remete à natureza.",
-  },
-  {
-    id: "romantico",
-    nome: "Romântico",
-    descricao:
-      "Peças arredondadas, tons pastel, estampas florais — o máximo de aconchego.",
+      "Off-white quente, bege linho e verde sálvia, com madeira clara, juta e buclê.",
   },
   {
     id: "contemporaneo",
     nome: "Contemporâneo",
     descricao:
-      "O estilo mais atual: madeira, laca, vidro e ferro combinados no mesmo ambiente.",
+      "Off-white, greige e cinza com toque de preto, marcenaria limpa e luz em LED.",
+  },
+  {
+    id: "industrial",
+    nome: "Industrial",
+    descricao:
+      "Cinza cimento, preto e caramelo, com tijolinho, metal preto e madeira rústica.",
   },
 ] as const;
 

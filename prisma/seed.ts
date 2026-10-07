@@ -15,6 +15,10 @@ async function main() {
     },
   });
 
+  await prisma.renderEstilo.deleteMany({
+    where: { estilo: { notIn: ESTILOS.map((e) => e.id) } },
+  });
+
   for (const estilo of ESTILOS) {
     for (const tamanho of TAMANHOS) {
       await prisma.renderEstilo.upsert({

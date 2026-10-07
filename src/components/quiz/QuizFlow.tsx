@@ -236,7 +236,7 @@ export function QuizFlow({
           </h2>
 
           {pergunta.visual ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {pergunta.alternativas.map((alt) => {
                 const url = tamanho ? catalogo[tamanho]?.[alt.estilo] : null;
                 return (
@@ -309,7 +309,7 @@ export function QuizFlow({
           <div className="relative w-full max-w-3xl aspect-[16/10] overflow-hidden rounded-sm border border-line">
             <Image
               src={imagemUrl}
-              alt={`Ambiente decorado no estilo ${nomeEstilo}`}
+              alt={`Ambiente decorado, estilo: ${nomeEstilo}`}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 768px"
@@ -319,7 +319,7 @@ export function QuizFlow({
         )}
 
         <p className="mt-8 max-w-xl text-sm sm:text-base text-charcoal/70">
-          Essa é uma referência do estilo {nomeEstilo.toLowerCase()} — a
+          Essa é uma referência para o seu estilo: {nomeEstilo}. A
           personalização de verdade (móveis, medidas do seu espaço) acontece
           na consultoria.
         </p>
