@@ -1,6 +1,6 @@
 # Casa Possível — Briefing de Estilo
 
-Primeiro módulo do Casa Possível para a Nina Interiores: uma pessoa responde
+Módulo de briefing da Casa Possível: uma pessoa responde
 um briefing rápido (tamanho do apê, cômodos a decorar, e um quiz de estilo) e
 recebe uma imagem de referência de como um ambiente no estilo identificado
 pode ficar. O objetivo é gerar desejo e captar um lead qualificado (estilo +
